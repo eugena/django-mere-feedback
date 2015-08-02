@@ -11,7 +11,6 @@ class FeedbackForm(forms.ModelForm):
 
     def __init__(self, user=None, is_right_url=True, prefix='feedback',
                  content_object=None, *args, **kwargs):
-        #self.content_object = content_object
 
         super(FeedbackForm, self).__init__(*args, **kwargs)
         self.is_right_url = is_right_url
