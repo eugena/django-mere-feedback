@@ -35,8 +35,11 @@ class FeedbackFormView(CreateView):
             path = settings.FEEDBACK_FORM_URL
         else:
             path = self.request.get_full_path()
-        if self.request.META['HTTP_REFERER'] != Site.objects.get_current().domain + path:
-             kwargs['is_right_url'] = False
+        if self.request.META['HTTP_REFERER'] != '%s://%s%s' % (
+                self.request.is_secure() and 'https' or 'http',
+                Site.objects.get_current().domain,
+                path):
+            kwargs['is_right_url'] = False
         return kwargs
 
     def get_success_url(self):
