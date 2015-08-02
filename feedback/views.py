@@ -2,6 +2,7 @@ import json
 from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib.sites.models import Site
 from django.contrib.auth.models import User
 from django.views.generic import CreateView
 from django.utils.translation import ugettext as _
@@ -34,7 +35,7 @@ class FeedbackFormView(CreateView):
             path = settings.FEEDBACK_FORM_URL
         else:
             path = self.request.get_full_path()
-        if self.request.META['HTTP_REFERER'] != self.request.META['HTTP_ORIGIN'] + path:
+        if self.request.META['HTTP_REFERER'] != Site.objects.get_current().domain + path:
              kwargs['is_right_url'] = False
         return kwargs
 
