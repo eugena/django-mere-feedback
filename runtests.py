@@ -10,11 +10,12 @@ try:
         DATABASES={
             "default": {
                 "ENGINE": "django.db.backends.sqlite3",
+                'NAME': ':memory:',
             }
         },
         ROOT_URLCONF="feedback.urls",
         INSTALLED_APPS=[
-            #"django.contrib.auth",
+            "django.contrib.auth",
             "django.contrib.contenttypes",
             "django.contrib.sites",
             "feedback",
@@ -34,7 +35,8 @@ try:
 except ImportError:
     import traceback
     traceback.print_exc()
-    raise ImportError("To fix this error, run: pip install -r requirements-test.txt")
+    raise ImportError(
+        "To fix this error, run: pip install -r requirements-test.txt")
 
 
 def run_tests(*test_args):

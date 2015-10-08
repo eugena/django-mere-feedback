@@ -57,7 +57,7 @@ class FeedbackFormView(CreateView):
             post['url'] = self.request.get_full_path()
             kwargs['data'] = post
 
-        if hasattr(settings, 'FEEDBACK_FORM_URL') and settings.FEEDBACK_FORM_URL:
+        if getattr(settings, 'FEEDBACK_FORM_URL', False):
             path = settings.FEEDBACK_FORM_URL
         else:
             path = self.request.get_full_path()

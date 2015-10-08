@@ -7,7 +7,7 @@ class FeedbackForm(forms.ModelForm):
     """
     The form shown when giving feedback
     """
-    is_right_url = True # for trap spam bots.
+    is_right_url = True  # for trap spam bots.
 
     def __init__(self, user=None, is_right_url=True, prefix='feedback',
                  content_object=None, *args, **kwargs):
